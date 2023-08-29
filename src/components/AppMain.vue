@@ -1,7 +1,11 @@
 <script>
+import AppLoader from './AppLoader.vue';
 import axios from 'axios';
 export default {
     name: 'AppMain',
+    components: {
+        AppLoader
+    },
     data() {
         return {
             baseUrl: 'http://localhost:8000',
@@ -18,7 +22,6 @@ export default {
             axios.get(`${this.baseUrl}/api/posts`).then((response) => {
                 console.log(response);
                 if (response.data.success) {
-
                     this.posts = response.data.results;
                     this.loading = false;
                 } else {
@@ -33,12 +36,16 @@ export default {
 
 
 <template lang="">
-    <div class="container">
+    <div v-if='loading'>
+        <AppLoader  />
+    </div>
+    <div v-else class="container">
         <div class="row">
-            <div class="col">
-                ciao
+            <div class="col-12 col-col-md-4" v-for="post in posts" :key="post.id">
+                {{post.id}}
+                {{post.title}}   
+                       
             </div>
-
         </div>
 
     </div>
