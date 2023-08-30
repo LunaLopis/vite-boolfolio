@@ -1,11 +1,18 @@
 <script>
 export default {
-    name: 'AppLoader'
+
 }
 </script>
 <template >
-    <div>
-        <div class="loader"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="content d-flex justify-content-center">
+                    <div class="loader"></div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -27,4 +34,5 @@ export default {
     100% {
         transform: rotate(360deg);
     }
-}</style>
+}
+</style>
