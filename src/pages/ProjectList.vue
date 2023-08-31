@@ -1,5 +1,5 @@
 <script>
-import AppLoader from './AppLoader.vue';
+import AppLoader from '../components/AppLoader.vue';
 import axios from 'axios';
 export default {
 
@@ -32,7 +32,7 @@ export default {
     //     }
     // },
     methods: {
-        getPosts(num_page) { // Aggiungi currentPage come parametro
+        getPosts(num_page) {
             this.loading = true;
             axios.get(`${this.baseUrl}/api/posts`, { params: { page: num_page } }).then((response) => {
                 if (response.data.success) {
@@ -41,7 +41,7 @@ export default {
                     this.lastPage = response.data.results.last_page;
                     this.loading = false;
                 } else {
-                    // Tratta eventuali errori qui
+                    // altro
                 }
             });
         }
