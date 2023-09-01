@@ -1,14 +1,17 @@
 <script>
 import AppLoader from '../components/AppLoader.vue';
 import axios from 'axios';
+import PostCard from '../components/PostCard.vue';
+import { store } from '../store.js';
 export default {
 
     components: {
-        AppLoader
+        AppLoader,
+        PostCard,
     },
     data() {
         return {
-            baseUrl: 'http://localhost:8000',
+            store,
             posts: [],
             loading: true,
             currentPage: 1,
@@ -34,7 +37,7 @@ export default {
     methods: {
         getPosts(num_page) {
             this.loading = true;
-            axios.get(`${this.baseUrl}/api/posts`, { params: { page: num_page } }).then((response) => {
+            axios.get(`${this.store.baseUrl}/api/posts`, { params: { page: num_page } }).then((response) => {
                 if (response.data.success) {
                     this.posts = response.data.results.data;
                     this.currentPage = response.data.results.current_page;
@@ -62,31 +65,7 @@ export default {
                 <h1>i miei progetti</h1>
             </div>
             <div class="col-12 col-md-4" v-for="post in posts" :key="post.id">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h2 class="card-header"> -{{ post.id }} {{ post.title }} </h2>
-
-
-                        <div class="card-image-top">
-                            <img v-if="post.cover_image" :src="`${baseUrl}/storage/${post.cover_image}`" class="img-fluid"
-                                alt="">
-                        </div>
-                        <h2 v-if="post.type" class="card-text"> {{ post.type.name }}</h2>
-
-                        <!-- <h5 class="card-text">{{post.content}}</h5> -->
-                        <div class="card-footer">
-                            <h3 v-if="post.tecnologies.length > 0" class="card-header">
-                                Technologies:
-                            </h3>
-                            <ul v-if="post.tecnologies.length > 0">
-                                <li v-for="tecnology in post.tecnologies" :key="tecnology.id">
-                                    {{ tecnology.name }}
-                                </li>
-                            </ul>
-                            <a href="">vedi dettagli</a>
-                        </div>
-                    </div>
-                </div>
+                <PostCard :post="post" />
             </div>
         </div>
 
