@@ -36,7 +36,8 @@ export default {
                                     {{ tecnology.name }}
                                 </li>
                             </ul>
-                            <a href="">vedi dettagli</a>
+                            <router-link class="btn btn-primary" :to="{name: 'single-post', params: {slug: post.slug}  }">vedi dettagli</router-link>
+                            
                         </div>
                     </div>
                 </div>
