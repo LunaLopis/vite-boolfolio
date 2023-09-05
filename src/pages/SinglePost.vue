@@ -27,6 +27,7 @@ export default {
                     this.post = response.data.results;
                     this.loading = false;
                 } else {
+                    this.$router.push({ name: 'not-found' });
                 }
             })
         }
