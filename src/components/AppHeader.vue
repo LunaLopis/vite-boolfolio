@@ -18,6 +18,10 @@ export default {
                 {
                     label: 'Tecnologie',
                 },
+                {
+                    label: 'contatti',
+                    routeName: 'contact-us',
+                }
 
             ]
         }

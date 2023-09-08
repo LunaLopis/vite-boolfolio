@@ -4,6 +4,7 @@ import HomePage from './pages/Homepage.vue';
 import PostList from './pages/ProjectList.vue';
 import SinglePost from './pages/SinglePost.vue';
 import NotFound from './pages/NotFound.vue';
+import ContactUs from './pages/ContactUs.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -28,6 +29,11 @@ const router = createRouter({
             path: '/*',
             name: 'not-found',
             component: NotFound,
+        },
+        {
+            path: '/contact-us',
+            name: 'contact-us',
+            component: ContactUs,
         },
 
 
